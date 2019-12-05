@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class BotControl : MonoBehaviour, IUserControl
 {
-    [SerializeField] private Ball _ball;
+    protected Ball _ball;
 
-    public float X { get; private set;}
+    public float X { get; protected set;}
 
-    public float Y { get; private set; }
+    public float Y { get; protected set; }
 
     public Object Object => this;
 
-    private void Update()
+    protected virtual void Awake()
+    {
+        _ball = FindObjectOfType<Ball>();
+    }
+
+    protected virtual void Update()
     {
         GoForBallLoop();
     }
 
-    private void GoForBallLoop()
+    protected virtual void GoForBallLoop()
     {
         Vector3 relativePos = _ball.transform.position - transform.position;
 

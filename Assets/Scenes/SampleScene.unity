@@ -291,11 +291,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 136578668}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.56, y: 1.73, z: -11.06}
+  m_LocalPosition: {x: -1.56, y: 1.73, z: -7.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1002065470}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &136578670
 MonoBehaviour:
@@ -306,10 +306,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 136578668}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed2b5ae714c7d4a4f81007bdea332e73, type: 3}
+  m_Script: {fileID: 11500000, guid: 16c72c897ff676347bdc0c65d9210a7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ball: {fileID: 2059874517}
+  _maxRangeFromBall: 2
+  _isBallNear: 0
 --- !u!54 &136578671
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -636,7 +637,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &418823168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,7 +650,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2b5ae714c7d4a4f81007bdea332e73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ball: {fileID: 2059874517}
 --- !u!54 &418823169
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1036,7 +1036,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &664766181
 Transform:
   m_ObjectHideFlags: 0
@@ -1049,7 +1049,7 @@ Transform:
   m_LocalScale: {x: 13.432031, y: 4.4546, z: 1}
   m_Children: []
   m_Father: {fileID: 1002065470}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &664766182
 MonoBehaviour:
@@ -1430,9 +1430,9 @@ GameObject:
   - component: {fileID: 820336031}
   - component: {fileID: 820336030}
   - component: {fileID: 820336029}
-  - component: {fileID: 820336028}
   - component: {fileID: 820336033}
   - component: {fileID: 820336027}
+  - component: {fileID: 820336028}
   m_Layer: 0
   m_Name: RomaPlayer
   m_TagString: Untagged
@@ -1461,12 +1461,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 820336026}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5acd4523f81ac1a4898f30461c68b120, type: 3}
+  m_Script: {fileID: 11500000, guid: 2622b76175b3e47449e71b68a02d6d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 200
+  _speed: 5
   _currentVelocity: {x: 0, y: 0, z: 0}
-  _kickPower: 500
+  _kickPower: 200
+  _rotSpeed: 80
 --- !u!136 &820336029
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1533,13 +1534,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 820336026}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.34, y: 1.73, z: 0.63}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.89, y: 1.73, z: -6.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1234500091}
-  m_Father: {fileID: 1002065470}
-  m_RootOrder: 4
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &820336033
 Rigidbody:
@@ -1632,7 +1633,6 @@ Transform:
   - {fileID: 1482840842}
   - {fileID: 2059874515}
   - {fileID: 418823174}
-  - {fileID: 820336032}
   - {fileID: 136578669}
   - {fileID: 664766181}
   m_Father: {fileID: 0}
@@ -1815,7 +1815,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1234500090}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ab1219e384c1504e8ad67de2f6eb7d8, type: 3}
   m_Name: 
@@ -1827,7 +1827,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1234500090}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 770b50e8f06a67c49a41d1a3505be6c6, type: 3}
   m_Name: 
@@ -2735,7 +2735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 202600409e122a14ea4d2b8ca98d2dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 820336028}
+  _player: {fileID: 0}
 --- !u!4 &2056974759
 Transform:
   m_ObjectHideFlags: 0

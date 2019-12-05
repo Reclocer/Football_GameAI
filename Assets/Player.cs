@@ -5,36 +5,33 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private IUserControl _userControl;//2.Создание переменной interface типа
-    [SerializeField] private float _speed = 5;
-    [SerializeField] private Vector3 _currentVelocity;
-    private Rigidbody _rigidbody;
-    [SerializeField] private float _kickPower = 200;
-    public event Action<IAffectableBody> OnKick = (body) => { }; 
+    protected IUserControl _userControl;//2.Создание переменной interface типа
+    [SerializeField] protected float _speed = 5;
+    [SerializeField] protected Vector3 _currentVelocity;
+    protected Rigidbody _rigidbody;
+    [SerializeField] protected float _kickPower = 200;
+    public event Action<IAffectableBody> OnKick = (body) => { };
 
-    void Awake()
+    protected void Awake()
     {
         InitializeLinks(); //3
     }
-    
-    private void InitializeLinks()
+
+    protected void InitializeLinks()
     {
         _userControl = GetComponent<IUserControl>();
         _rigidbody = GetComponent<Rigidbody>();
     }
-        
-    void FixedUpdate()
+
+    protected virtual void FixedUpdate()
     {
         UpdateVelosityView();
         
         if (_userControl == null)
             return;
         Vector3 movePosition = new Vector3(_userControl.X, 0f, _userControl.Y);
-
+        
         _rigidbody.velocity = movePosition * _speed * Time.fixedDeltaTime;
-
-        ////4.Перемещение объекта в координаты, которые сообщает нам IUserControl
-        //transform.Translate(movePosition * _speed * Time.deltaTime); 
 
     }
 
@@ -49,12 +46,12 @@ public class Player : MonoBehaviour
         _userControl = userControl;
     }
 
-    private void UpdateVelosityView()
+    protected void UpdateVelosityView()
     {
         _currentVelocity = _rigidbody.velocity;
     }
 
-    private void Kick(IAffectableBody affect)
+    protected void Kick(IAffectableBody affect)
     {
         Vector3 kickVector = new Vector3(_rigidbody.velocity.x,
             _rigidbody.velocity.magnitude,
@@ -63,7 +60,7 @@ public class Player : MonoBehaviour
         OnKick(affect);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected void OnCollisionEnter(Collision collision)
     {
         IAffectableBody affectableBody = collision.gameObject.GetComponent<IAffectableBody>();
         if(affectableBody != null)
