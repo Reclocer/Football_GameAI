@@ -12,6 +12,7 @@ public class Ball : MonoBehaviour, IAffectableBody
 
     public void Collide(Vector3 direction, float power, GameObject sender)
     {
+        //On collide !
         _lastAffector = sender;
         _rigidBody.AddForce(direction * power);
     }
