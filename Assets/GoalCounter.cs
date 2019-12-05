@@ -6,6 +6,8 @@ using UnityEngine;
 public class GoalCounter : MonoBehaviour
 {
     private Dictionary<GameObject, int> _goalsDict = new Dictionary<GameObject, int>();
+    public Dictionary<GameObject, int> GoalsDict => _goalsDict;
+
     [SerializeField] private Gate _gate;
     public event Action<GameObject, int> OnCounterChanged = (playerOjb, goalCount) => { };
 
@@ -16,13 +18,13 @@ public class GoalCounter : MonoBehaviour
 
     private void Awake()
     {
-        _gate.OnGoal += IncrementGoal;        
+        _gate.OnGoal += IncrementGoal;
     }
 
     private void IncrementGoal(GameObject lastAffector)
     {
         AddGoalToPlayer(lastAffector);
-        ChoiceLeaderPlayer(lastAffector);//выбор лидера среди игроков
+        ChoiceLeaderPlayer();
         OnCounterChanged(lastAffector, _goalsDict[lastAffector]);
     }
 
@@ -39,7 +41,7 @@ public class GoalCounter : MonoBehaviour
 
     //выбор лидера среди игроков
     // параметр метода не используется в методе, и нужен только для соответствия сигнатуре события OnGoal
-    private void ChoiceLeaderPlayer(GameObject empty)
+    private void ChoiceLeaderPlayer()
     {          
         foreach (GameObject player in _goalsDict.Keys)
         {            

@@ -12,16 +12,4 @@ public class UIGoalTextCounter : MonoBehaviour
         _goalCountText.text = text;
     }
 
-    private void Update()
-    {
-        //READ IT! ALLOCATION PER EACH FRAME!!!
-        return;
-        int goals = 50;
-        object goalsObj = (object)goals;
-        string goalsString = goalsObj.ToString();
-        _goalCountText.text = 5.ToString();
-    }
-
-
-
 }

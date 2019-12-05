@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,7 @@ public class LeaderBoard : MonoBehaviour
     
     //Dictionary<TKey, TValue>
     private Dictionary<GameObject, UIGoalTextCounter> _playerViewsDict = new Dictionary<GameObject, UIGoalTextCounter>();
+
 
     private void Awake()
     {
@@ -40,6 +42,9 @@ public class LeaderBoard : MonoBehaviour
                 rect.sizeDelta = _sizeForBlock;
         }
 
+        SortPlayerByGoals();
+
+        return;
         //вызов метода "назначение позиции в иерархии столбца чемпионов" 
         if (_goalCounter.Leader != null)
         {            
@@ -62,5 +67,28 @@ public class LeaderBoard : MonoBehaviour
             _playerViewsDict[_lastLeader].transform.SetSiblingIndex(1);
             _lastLeader = leader;
         }
+    }
+
+    private void SortPlayerByGoals()
+    {
+        var playerList = _goalCounter.GoalsDict.ToList();
+        var sorted = playerList.OrderBy(pair => pair.Value).ToList();
+        sorted.Reverse();
+        int index = 1;
+        int lastPoints = 0;
+
+        foreach(var pair in sorted)
+        {
+            GameObject player = pair.Key;
+            int playerPoints = pair.Value;
+            UIGoalTextCounter textCounter = _playerViewsDict[player];
+            textCounter.transform.SetSiblingIndex(index);
+
+            if (playerPoints == lastPoints)
+                textCounter.transform.SetSiblingIndex(index - 2);
+            lastPoints = playerPoints;
+            index++;
+        }
+       
     }
 }
