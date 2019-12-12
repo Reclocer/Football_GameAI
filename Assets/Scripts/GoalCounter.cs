@@ -8,7 +8,8 @@ public class GoalCounter : MonoBehaviour
     private Dictionary<GameObject, int> _goalsDict = new Dictionary<GameObject, int>();
     public Dictionary<GameObject, int> GoalsDict => _goalsDict;
 
-    [SerializeField] private Gate _gate;
+    [SerializeField] private Gate _gateTeam1;
+    [SerializeField] private Gate _gateTeam2;
     public event Action<GameObject, int> OnCounterChanged = (playerOjb, goalCount) => { };
 
     //переменные для выбора лидера
@@ -18,7 +19,8 @@ public class GoalCounter : MonoBehaviour
 
     private void Awake()
     {
-        _gate.OnGoal += IncrementGoal;
+        _gateTeam1.OnGoal += IncrementGoal;
+        _gateTeam2.OnGoal += IncrementGoal;
     }
 
     private void IncrementGoal(GameObject lastAffector)

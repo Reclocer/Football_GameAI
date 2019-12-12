@@ -11,10 +11,28 @@ public class Player : MonoBehaviour
     protected Rigidbody _rigidbody;
     [SerializeField] protected float _kickPower = 200;
     public event Action<IAffectableBody> OnKick = (body) => { };
+    
+    //team marker
+    protected int _teamNumber = 1;
+    public int TeamNumber
+    {
+        get
+        {
+            return _teamNumber;
+        }
+        set
+        {
+            _teamNumber = value;
+        }
+    }
+    [SerializeField] protected MeshRenderer _teamMarker;
+    
 
-    protected void Awake()
+    protected void Start()
     {
         InitializeLinks(); //3
+        ChangeTeamColor();
+
     }
 
     protected void InitializeLinks()
@@ -66,7 +84,19 @@ public class Player : MonoBehaviour
         if(affectableBody != null)
         {
             Kick(affectableBody);
-            //Debug.Log($"Kick to {collision.gameObject.name} !");
+            //Debug.Log($"Kick to {collision.gameObject.name} !");            
+        }
+    }
+
+    protected void ChangeTeamColor()
+    {
+        if(_teamNumber <= 1)
+        {
+            _teamMarker.material.color = Color.blue;
+        }
+        else
+        {
+            _teamMarker.material.color = Color.red;
         }
     }
 

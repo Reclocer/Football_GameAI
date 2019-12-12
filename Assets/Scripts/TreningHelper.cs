@@ -5,16 +5,26 @@ using UnityEngine;
 public class TreningHelper : MonoBehaviour
 {
     [SerializeField] private float _delayToReturn = 2;
-    [SerializeField] private Ball _ball;
-    [SerializeField] private Player[] _player;
+    [SerializeField] private Ball _ball;    
+    [SerializeField] private Player[] _team1;
+    [SerializeField] private Player[] _team2;
+    //[SerializeField] private TestTeam _teams;
+
     private Vector3 _ballStartPosition;
     private Coroutine _currentCoroutine;
-        
-    void Start()
+
+    void Awake()
     {
-        for(int i = 0; i < _player.Length; i++)
+        for(int i = 0; i < _team1.Length; i++)
+        {            
+            _team1[i].OnKick += OnPlayerKick;
+            _team1[i].TeamNumber = 1;
+        }
+
+        for (int i = 0; i < _team2.Length; i++)
         {
-            _player[i].OnKick += OnPlayerKick;
+            _team2[i].OnKick += OnPlayerKick;
+            _team2[i].TeamNumber = 2;
         }
 
         _ballStartPosition = _ball.transform.position;

@@ -5,13 +5,22 @@ using UnityEngine;
 public class UserPlayer : Player
 {
     [SerializeField] private float _rotSpeed = 80f;
+
+    private void Start()
+    {
+        base.Start();
+        Cursor.visible = false;
+    }
     protected override void FixedUpdate()
     {
         float mouseAxis = Input.GetAxis("Mouse X");
         UpdateVelosityView();
 
         if (_userControl == null)
+        {
             return;
+        }
+
         //Rotation Logic
         Quaternion deltaRotation = Quaternion.Euler(Vector3.up * _rotSpeed * mouseAxis * Time.deltaTime);
         _rigidbody.MoveRotation(_rigidbody.rotation * deltaRotation);
