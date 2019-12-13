@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     protected Rigidbody _rigidbody;
     [SerializeField] protected float _kickPower = 200;
     public event Action<IAffectableBody> OnKick = (body) => { };
+    protected GameObject _treningHelper;
     
     //team marker
     protected int _teamNumber = 1;
@@ -26,13 +27,15 @@ public class Player : MonoBehaviour
         }
     }
     [SerializeField] protected MeshRenderer _teamMarker;
+    protected Color _teamColor;
+    public Color TeamColor => _teamColor;
     
 
     protected void Start()
     {
+        _treningHelper = GameObject.FindGameObjectWithTag("treningHelper");
         InitializeLinks(); //3
-        ChangeTeamColor();
-
+        ChangeTeamColor();        
     }
 
     protected void InitializeLinks()
@@ -90,13 +93,17 @@ public class Player : MonoBehaviour
 
     protected void ChangeTeamColor()
     {
-        if(_teamNumber <= 1)
+        Color teamColor;
+
+        if (_teamNumber <= 1)
         {
-            _teamMarker.material.color = Color.blue;
+            teamColor = _treningHelper.GetComponent<TreningHelper>().Team1Color;
+            _teamMarker.material.color = teamColor;
         }
         else
         {
-            _teamMarker.material.color = Color.red;
+            teamColor = _treningHelper.GetComponent<TreningHelper>().Team2Color;
+            _teamMarker.material.color = teamColor;
         }
     }
 

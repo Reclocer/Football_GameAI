@@ -5,7 +5,15 @@ using UnityEngine;
 public class TreningHelper : MonoBehaviour
 {
     [SerializeField] private float _delayToReturn = 2;
-    [SerializeField] private Ball _ball;    
+    [SerializeField] private Ball _ball;
+
+    //teams
+    [SerializeField] private Color _team1Color;
+    public Color Team1Color => _team1Color;
+
+    [SerializeField] private Color _team2Color;
+    public Color Team2Color => _team2Color;
+
     [SerializeField] private Player[] _team1;
     [SerializeField] private Player[] _team2;
     //[SerializeField] private TestTeam _teams;

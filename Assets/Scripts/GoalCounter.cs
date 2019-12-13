@@ -5,17 +5,12 @@ using UnityEngine;
 
 public class GoalCounter : MonoBehaviour
 {
-    private Dictionary<GameObject, int> _goalsDict = new Dictionary<GameObject, int>();
-    public Dictionary<GameObject, int> GoalsDict => _goalsDict;
+    private Dictionary<int, int> _goalsDict = new Dictionary<int, int>();
+    public Dictionary<int, int> GoalsDict => _goalsDict;
 
     [SerializeField] private Gate _gateTeam1;
     [SerializeField] private Gate _gateTeam2;
-    public event Action<GameObject, int> OnCounterChanged = (playerOjb, goalCount) => { };
-
-    //переменные для выбора лидера
-    private GameObject _leader;
-    public GameObject Leader => _leader;
-    private int _maxGoal = 0;
+    public event Action<int, int> OnCounterChanged = (playerOjb, goalCount) => { };
 
     private void Awake()
     {
@@ -23,35 +18,20 @@ public class GoalCounter : MonoBehaviour
         _gateTeam2.OnGoal += IncrementGoal;
     }
 
-    private void IncrementGoal(GameObject lastAffector)
+    private void IncrementGoal(int teamNumber)
     {
-        AddGoalToPlayer(lastAffector);
-        ChoiceLeaderPlayer();
-        OnCounterChanged(lastAffector, _goalsDict[lastAffector]);
+        AddGoalToPlayer(teamNumber);     
+        OnCounterChanged(teamNumber, _goalsDict[teamNumber]);
     }
 
-    private void AddGoalToPlayer(GameObject playerGameObject)
+    private void AddGoalToPlayer(int teamNumber)
     {
-        if(_goalsDict.ContainsKey(playerGameObject))
+        if(_goalsDict.ContainsKey(teamNumber))
         {
-            _goalsDict[playerGameObject]++; 
+            _goalsDict[teamNumber]++; 
         } else
         {
-            _goalsDict.Add(playerGameObject, 1);
+            _goalsDict.Add(teamNumber, 1);
         }
-    }
-
-    //выбор лидера среди игроков
-    // параметр метода не используется в методе, и нужен только для соответствия сигнатуре события OnGoal
-    private void ChoiceLeaderPlayer()
-    {          
-        foreach (GameObject player in _goalsDict.Keys)
-        {            
-            if (_goalsDict[player] > _maxGoal)
-            {
-                _maxGoal = _goalsDict[player];
-                _leader = player;                           
-            }
-        }        
-    }
+    }        
 }
