@@ -358,6 +358,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &203891229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 203891230}
+  - component: {fileID: 203891231}
+  m_Layer: 0
+  m_Name: PlayZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &203891230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203891229}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1002065470}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &203891231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203891229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f3e256bca21fcb4d830bf7c8fca8d3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playZone: {x: 60, y: 50, z: 60}
+  _playZonePosition: {x: 0, y: 1, z: 0}
+  _zoneColor: {r: 0, g: 0.13080311, b: 1, a: 0.3019608}
 --- !u!1 &252953026
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,6 +639,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BotPlayer (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2319679539626937574, guid: 368ce1519e79725419f79b44a7cb1b22,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3604615413024517811, guid: 368ce1519e79725419f79b44a7cb1b22,
         type: 3}
@@ -836,18 +887,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &651883160 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4549705318946348503, guid: 368ce1519e79725419f79b44a7cb1b22,
-    type: 3}
-  m_PrefabInstance: {fileID: 4549705319581380431}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5acd4523f81ac1a4898f30461c68b120, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &664766180
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,18 +1430,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &841748015 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4549705318946348503, guid: 368ce1519e79725419f79b44a7cb1b22,
-    type: 3}
-  m_PrefabInstance: {fileID: 1660230272}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5acd4523f81ac1a4898f30461c68b120, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &874450285
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,6 +1506,7 @@ Transform:
   - {fileID: 1482840842}
   - {fileID: 664766181}
   - {fileID: 2059874515}
+  - {fileID: 203891230}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2152,6 +2180,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BotPlayer (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2319679539626937574, guid: 368ce1519e79725419f79b44a7cb1b22,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3604615413024517811, guid: 368ce1519e79725419f79b44a7cb1b22,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2282,18 +2315,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1764836620}
   m_CullTransparentMesh: 0
---- !u!114 &1772997123 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4549705318946348503, guid: 368ce1519e79725419f79b44a7cb1b22,
-    type: 3}
-  m_PrefabInstance: {fileID: 508760777}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5acd4523f81ac1a4898f30461c68b120, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1822016344
 GameObject:
   m_ObjectHideFlags: 0
@@ -2666,7 +2687,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2043638468}
   - component: {fileID: 2043638469}
-  - component: {fileID: 2043638470}
   m_Layer: 0
   m_Name: TreningHelper
   m_TagString: treningHelper
@@ -2700,31 +2720,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd221e1c6ae4d564e846c1affa11b370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delayToReturn: 2
   _ball: {fileID: 2059874517}
-  _team1Color: {r: 0, g: 0, b: 1, a: 1}
-  _team2Color: {r: 1, g: 0, b: 0, a: 1}
-  _team1:
-  - {fileID: 820336028}
-  - {fileID: 1772997123}
-  _team2:
-  - {fileID: 841748015}
-  - {fileID: 651883160}
---- !u!114 &2043638470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2043638467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0c6633e4441f534d875d8d4f541eaf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Teams:
-  - {fileID: 2043638469}
-  - {fileID: 2043638469}
+  _playZone: {fileID: 203891231}
 --- !u!1 &2056974757
 GameObject:
   m_ObjectHideFlags: 0
@@ -2979,6 +2976,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BotPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 2319679539626937574, guid: 368ce1519e79725419f79b44a7cb1b22,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3604615413024517811, guid: 368ce1519e79725419f79b44a7cb1b22,
         type: 3}

@@ -4,48 +4,39 @@ using UnityEngine;
 
 public class TreningHelper : MonoBehaviour
 {
-    [SerializeField] private float _delayToReturn = 2;
+    //[SerializeField] private float _delayToReturn = 2;
     [SerializeField] private Ball _ball;
-
-    //teams
-    [SerializeField] private Color _team1Color;
-    public Color Team1Color => _team1Color;
-
-    [SerializeField] private Color _team2Color;
-    public Color Team2Color => _team2Color;
-
-    [SerializeField] private Player[] _team1;
-    [SerializeField] private Player[] _team2;
-    //[SerializeField] private TestTeam _teams;
+    [SerializeField] private PlayZone _playZone;
 
     private Vector3 _ballStartPosition;
+    private Vector3 _ballPosition;
     private Coroutine _currentCoroutine;
 
     void Awake()
     {
-        for(int i = 0; i < _team1.Length; i++)
-        {            
-            _team1[i].OnKick += OnPlayerKick;
-            _team1[i].TeamNumber = 1;
-        }
-
-        for (int i = 0; i < _team2.Length; i++)
-        {
-            _team2[i].OnKick += OnPlayerKick;
-            _team2[i].TeamNumber = 2;
-        }
-
         _ballStartPosition = _ball.transform.position;
     }
-        
-    private void OnPlayerKick(IAffectableBody affectable)
+
+    private void Update()
     {
-        if (affectable == _ball)
+        _ballPosition = _ball.transform.position;
+        bool ballInZone = _playZone.IsOutOfBounds(_ballPosition);
+        if (!ballInZone)
         {
-            if(_currentCoroutine == null)
-                _currentCoroutine = StartCoroutine(ReturnBallCorutine());
+            ReturnBallToStartPosition();
         }
+
+
     }
+
+    //private void OnPlayerKick(IAffectableBody affectable)
+    //{
+    //    if (affectable == _ball as IAffectableBody)
+    //    {
+    //        if (_currentCoroutine == null)
+    //            _currentCoroutine = StartCoroutine(ReturnBallCorutine());
+    //    }
+    //}
 
     private void ReturnBallToStartPosition()
     {
@@ -54,10 +45,10 @@ public class TreningHelper : MonoBehaviour
         _ball.Rigidbody.velocity = Vector3.zero;
     }
 
-    private IEnumerator ReturnBallCorutine()
-    {
-        yield return new WaitForSeconds(_delayToReturn);
-        ReturnBallToStartPosition();
-        _currentCoroutine = null;
-    }
+    //private IEnumerator ReturnBallCorutine()
+    //{
+    //    yield return new WaitForSeconds(_delayToReturn);
+    //    ReturnBallToStartPosition();
+    //    _currentCoroutine = null;
+    //}
 }

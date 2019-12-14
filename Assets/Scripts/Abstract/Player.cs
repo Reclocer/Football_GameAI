@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    protected IUserControl _userControl;//2.Создание переменной interface типа
+    protected IUserControl _userControl;
     [SerializeField] protected float _speed = 5;
     [SerializeField] protected Vector3 _currentVelocity;
     protected Rigidbody _rigidbody;
     [SerializeField] protected float _kickPower = 200;
-    public event Action<IAffectableBody> OnKick = (body) => { };
+    //public event Action<IAffectableBody> OnKick = (body) => { };
     protected GameObject _treningHelper;
     
     //team marker
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     {
         _treningHelper = GameObject.FindGameObjectWithTag("treningHelper");
         InitializeLinks(); //3
-        ChangeTeamColor();        
+        //ChangeTeamColor();        
     }
 
     protected void InitializeLinks()
@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
             _rigidbody.velocity.magnitude,
             _rigidbody.velocity.z);
         affect.Collide(kickVector, _kickPower, this.gameObject);
-        OnKick(affect);
+        //OnKick(affect);
     }
 
     protected void OnCollisionEnter(Collision collision)
@@ -91,20 +91,20 @@ public class Player : MonoBehaviour
         }
     }
 
-    protected void ChangeTeamColor()
-    {
-        Color teamColor;
+    //protected void ChangeTeamColor()
+    //{
+    //    Color teamColor;
 
-        if (_teamNumber <= 1)
-        {
-            teamColor = _treningHelper.GetComponent<TreningHelper>().Team1Color;
-            _teamMarker.material.color = teamColor;
-        }
-        else
-        {
-            teamColor = _treningHelper.GetComponent<TreningHelper>().Team2Color;
-            _teamMarker.material.color = teamColor;
-        }
-    }
+    //    if (_teamNumber <= 1)
+    //    {
+    //        teamColor = _treningHelper.GetComponent<TreningHelper>().Team1Color;
+    //        _teamMarker.material.color = teamColor;
+    //    }
+    //    else
+    //    {
+    //        teamColor = _treningHelper.GetComponent<TreningHelper>().Team2Color;
+    //        _teamMarker.material.color = teamColor;
+    //    }
+    //}
 
 }
