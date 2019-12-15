@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public abstract class Player : MonoBehaviour
 {
     protected IUserControl _userControl;
     [SerializeField] protected float _speed = 5;
@@ -11,9 +11,9 @@ public class Player : MonoBehaviour
     protected Rigidbody _rigidbody;
     [SerializeField] protected float _kickPower = 200;
     //public event Action<IAffectableBody> OnKick = (body) => { };
-    protected GameObject _treningHelper;
+    //protected GameObject _treningHelper;
     
-    //team marker
+    //team 
     protected int _teamNumber = 1;
     public int TeamNumber
     {
@@ -26,22 +26,28 @@ public class Player : MonoBehaviour
             _teamNumber = value;
         }
     }
+
+    [SerializeField] protected Team _teamObject;
     [SerializeField] protected MeshRenderer _teamMarker;
     protected Color _teamColor;
     public Color TeamColor => _teamColor;
     
 
-    protected void Start()
+    protected virtual void Start()
     {
-        _treningHelper = GameObject.FindGameObjectWithTag("treningHelper");
+        //_treningHelper = GameObject.FindGameObjectWithTag("treningHelper");
         InitializeLinks(); //3
         //ChangeTeamColor();        
     }
 
     protected void InitializeLinks()
-    {
+    {        
         _userControl = GetComponent<IUserControl>();
         _rigidbody = GetComponent<Rigidbody>();
+
+        _teamObject = GetComponentInParent<Team>();
+        //_teamColor = _teamObject.gameObject.GetComponent<Team>().TeamColor;
+        _teamMarker.material.color = _teamColor;
     }
 
     protected virtual void FixedUpdate()
@@ -50,13 +56,17 @@ public class Player : MonoBehaviour
         
         if (_userControl == null)
             return;
+
         Vector3 movePosition = new Vector3(_userControl.X, 0f, _userControl.Y);
         
         _rigidbody.velocity = movePosition * _speed * Time.fixedDeltaTime;
 
     }
 
-    //5.Исполнение Singleton контроллера
+    /// <summary>
+    /// Set control system (Singleton)
+    /// </summary>
+    /// <param name="userControl"></param>
     public void SetControl(IUserControl userControl)
     {
         if(_userControl != null)

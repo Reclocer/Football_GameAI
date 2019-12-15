@@ -6,11 +6,12 @@ public class UserPlayer : Player
 {
     [SerializeField] private float _rotSpeed = 80f;
 
-    private void Start()
+    protected override void Start()
     {
         base.Start();
         Cursor.visible = false;
     }
+
     protected override void FixedUpdate()
     {
         float mouseAxis = Input.GetAxis("Mouse X");

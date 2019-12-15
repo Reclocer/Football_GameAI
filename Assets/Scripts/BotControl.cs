@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//[RequireComponent(typeof(Player))]
 public class BotControl : MonoBehaviour, IUserControl
 {
     protected Ball _ball;
