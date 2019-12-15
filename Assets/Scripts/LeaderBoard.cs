@@ -10,24 +10,24 @@ public class LeaderBoard : MonoBehaviour
     private Vector2 _sizeForBlock = new Vector2(250f, 100f);    
     
     //Dictionary<TKey, TValue>
-    private Dictionary<int, UIGoalTextCounter> _teamViewsDict = new Dictionary<int, UIGoalTextCounter>();
+    private Dictionary<GameObject, UIGoalTextCounter> _teamViewsDict = new Dictionary<GameObject, UIGoalTextCounter>();
 
     private void Awake()
     {
         _goalCounter.OnCounterChanged += OnTeamGoal;
     }
 
-    private void OnTeamGoal(int teamNumber, int goalCount)
+    private void OnTeamGoal(GameObject team, int goalCount)
     {       
-        if (_teamViewsDict.ContainsKey(teamNumber))
+        if (_teamViewsDict.ContainsKey(team))
         {
-            _teamViewsDict[teamNumber].SetText($"Team{teamNumber}: {goalCount}");
+            _teamViewsDict[team].SetText($"{team.name}: {goalCount}");
         }
         else
         {
             UIGoalTextCounter textCounter = Instantiate(_textCounterUIprefab, transform);
-            _teamViewsDict.Add(teamNumber, textCounter);
-            textCounter.SetText($"Team{teamNumber}: {goalCount}");            
+            _teamViewsDict.Add(team, textCounter);
+            textCounter.SetText($"{team.name}: {goalCount}");            
 
             RectTransform rect = textCounter.GetComponent<RectTransform>();
 
@@ -40,17 +40,17 @@ public class LeaderBoard : MonoBehaviour
 
     private void SortTeamsByGoals()
     {
-        var playerList = _goalCounter.GoalsDict.ToList();
-        var sorted = playerList.OrderBy(pair => pair.Value).ToList();
+        var teamList = _goalCounter.GoalsDict.ToList();
+        var sorted = teamList.OrderBy(pair => pair.Value).ToList();
         sorted.Reverse();
         int index = 1;
         int lastPoints = 0;
 
         foreach(var pair in sorted)
         {
-            int teamNumber = pair.Key;
+            GameObject team = pair.Key;
             int teamPoints = pair.Value;
-            UIGoalTextCounter textCounter = _teamViewsDict[teamNumber];
+            UIGoalTextCounter textCounter = _teamViewsDict[team];
             textCounter.transform.SetSiblingIndex(index);
 
             if (teamPoints == lastPoints)

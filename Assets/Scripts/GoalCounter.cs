@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class GoalCounter : MonoBehaviour
 {
-    private Dictionary<int, int> _goalsDict = new Dictionary<int, int>();
-    public Dictionary<int, int> GoalsDict => _goalsDict;
+    private Dictionary<GameObject, int> _goalsDict = new Dictionary<GameObject, int>();
+    public Dictionary<GameObject, int> GoalsDict => _goalsDict;
 
     [SerializeField] private Gate _gateTeam1;
     [SerializeField] private Gate _gateTeam2;
-    public event Action<int, int> OnCounterChanged = (playerOjb, goalCount) => { };
+    public event Action<GameObject, int> OnCounterChanged = (team, goalCount) => { };
 
     private void Awake()
     {
@@ -18,20 +18,21 @@ public class GoalCounter : MonoBehaviour
         _gateTeam2.OnGoal += IncrementGoal;
     }
 
-    private void IncrementGoal(int teamNumber)
+    private void IncrementGoal(GameObject team)
     {
-        AddGoalToPlayer(teamNumber);     
-        OnCounterChanged(teamNumber, _goalsDict[teamNumber]);
+        AddGoalToTeam(team);     
+        OnCounterChanged(team, _goalsDict[team]);
     }
 
-    private void AddGoalToPlayer(int teamNumber)
+    private void AddGoalToTeam(GameObject team)
     {
-        if(_goalsDict.ContainsKey(teamNumber))
+        if(_goalsDict.ContainsKey(team))
         {
-            _goalsDict[teamNumber]++; 
-        } else
+            _goalsDict[team]++; 
+        }
+        else
         {
-            _goalsDict.Add(teamNumber, 1);
+            _goalsDict.Add(team, 1);
         }
     }        
 }

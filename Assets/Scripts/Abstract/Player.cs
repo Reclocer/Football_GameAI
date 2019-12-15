@@ -10,8 +10,7 @@ public abstract class Player : MonoBehaviour
     [SerializeField] protected Vector3 _currentVelocity;
     protected Rigidbody _rigidbody;
     [SerializeField] protected float _kickPower = 200;
-    //public event Action<IAffectableBody> OnKick = (body) => { };
-    //protected GameObject _treningHelper;
+    //public event Action<IAffectableBody> OnKick = (body) => { };    
     
     //team 
     protected int _teamNumber = 1;
@@ -27,17 +26,16 @@ public abstract class Player : MonoBehaviour
         }
     }
 
-    [SerializeField] protected Team _teamObject;
+    [SerializeField] protected GameObject _teamObject;
+    public GameObject TeamObject => _teamObject;
     [SerializeField] protected MeshRenderer _teamMarker;
     protected Color _teamColor;
     public Color TeamColor => _teamColor;
     
 
     protected virtual void Start()
-    {
-        //_treningHelper = GameObject.FindGameObjectWithTag("treningHelper");
-        InitializeLinks(); //3
-        //ChangeTeamColor();        
+    {        
+        InitializeLinks();              
     }
 
     protected void InitializeLinks()
@@ -45,8 +43,9 @@ public abstract class Player : MonoBehaviour
         _userControl = GetComponent<IUserControl>();
         _rigidbody = GetComponent<Rigidbody>();
 
-        _teamObject = GetComponentInParent<Team>();
-        //_teamColor = _teamObject.gameObject.GetComponent<Team>().TeamColor;
+        //set team color
+        //_teamObject = GetComponentInParent<Game>();
+        _teamColor = _teamObject.GetComponent<Team>().TeamColor;
         _teamMarker.material.color = _teamColor;
     }
 
@@ -96,25 +95,7 @@ public abstract class Player : MonoBehaviour
         IAffectableBody affectableBody = collision.gameObject.GetComponent<IAffectableBody>();
         if(affectableBody != null)
         {
-            Kick(affectableBody);
-            //Debug.Log($"Kick to {collision.gameObject.name} !");            
+            Kick(affectableBody);           
         }
     }
-
-    //protected void ChangeTeamColor()
-    //{
-    //    Color teamColor;
-
-    //    if (_teamNumber <= 1)
-    //    {
-    //        teamColor = _treningHelper.GetComponent<TreningHelper>().Team1Color;
-    //        _teamMarker.material.color = teamColor;
-    //    }
-    //    else
-    //    {
-    //        teamColor = _treningHelper.GetComponent<TreningHelper>().Team2Color;
-    //        _teamMarker.material.color = teamColor;
-    //    }
-    //}
-
 }
