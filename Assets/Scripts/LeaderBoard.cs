@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LeaderBoard : MonoBehaviour
 {
@@ -27,8 +28,13 @@ public class LeaderBoard : MonoBehaviour
         {
             UIGoalTextCounter textCounter = Instantiate(_textCounterUIprefab, transform);
             _teamViewsDict.Add(team, textCounter);
-            textCounter.SetText($"{team.name}: {goalCount}");            
+            textCounter.SetText($"{team.name}: {goalCount}");
 
+            //UIGoalTextCounter color
+            Color uiGoalTextCounterColor = team.GetComponent<Team>().TeamColor;
+            textCounter.GetComponent<Text>().color = uiGoalTextCounterColor; 
+
+            //UIGoalTextCounter size
             RectTransform rect = textCounter.GetComponent<RectTransform>();
 
             if (rect != null)

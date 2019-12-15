@@ -955,6 +955,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7518afb15f8efdd4b8972fd8d428e0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _team: {fileID: 1400236446}
+  _enemyTeam: {fileID: 1866293503}
 --- !u!65 &664766183
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1893,6 +1895,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7518afb15f8efdd4b8972fd8d428e0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _team: {fileID: 1866293503}
+  _enemyTeam: {fileID: 1400236446}
 --- !u!1 &1490045907
 GameObject:
   m_ObjectHideFlags: 0
@@ -3147,7 +3151,7 @@ PrefabInstance:
     - target: {fileID: 3604615413024517811, guid: 368ce1519e79725419f79b44a7cb1b22,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.14
+      value: 1.73
       objectReference: {fileID: 0}
     - target: {fileID: 3604615413024517811, guid: 368ce1519e79725419f79b44a7cb1b22,
         type: 3}
