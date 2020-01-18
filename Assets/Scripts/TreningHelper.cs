@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,15 +13,21 @@ public class TreningHelper : MonoBehaviour
     private Vector3 _ballPosition;
     private Coroutine _currentCoroutine;
 
-    void Awake()
-    {
+    void Start()
+    {        
         _ballStartPosition = _ball.transform.position;
+
+        GoalCounter.Instance.OnCounterChanged += (obj, count) =>
+        {
+            ReturnBallToStartPosition();
+        };
     }
 
     private void Update()
     {
         _ballPosition = _ball.transform.position;
         bool ballInZone = _playZone.IsOutOfBounds(_ballPosition);
+
         if (!ballInZone)
         {
             ReturnBallToStartPosition();

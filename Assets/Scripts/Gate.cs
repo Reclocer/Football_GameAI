@@ -9,10 +9,11 @@ public class Gate : MonoBehaviour
     public event Action<GameObject> OnGoal = (team) => { };
     [SerializeField] private GameObject _team;
     [SerializeField] private GameObject _enemyTeam;
+    [SerializeField] private TeamIndex _teamIndex;    
 
-    private void Awake()
+    private void Start()
     {
-        Color teamColor = _team.GetComponent<Team>().TeamColor;
+        Color teamColor = TeamHolder.Instance.GetTeamByIndex(_teamIndex).TeamColor;
         GetComponent<MeshRenderer>().material.color = teamColor;
     }
 

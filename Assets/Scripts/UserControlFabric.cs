@@ -4,7 +4,7 @@ public class UserControlFabric : MonoBehaviour
 {
     [SerializeField] private Player _player;
 
-    public static UserControlFabric Instance { get; private set; }
+    public static UserControlFabric Instance { get; private set; }//
     private void Awake()
     {
         if(Instance == null)

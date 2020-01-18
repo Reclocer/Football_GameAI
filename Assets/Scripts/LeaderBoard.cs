@@ -6,16 +6,16 @@ using UnityEngine.UI;
 
 public class LeaderBoard : MonoBehaviour
 {
-    [SerializeField] private UIGoalTextCounter _textCounterUIprefab;
-    [SerializeField] private GoalCounter _goalCounter;
-    private Vector2 _sizeForBlock = new Vector2(250f, 100f);    
     
-    //Dictionary<TKey, TValue>
+    [SerializeField] private UIGoalTextCounter _textCounterUIprefab;
+    private Vector2 _sizeForBlock = new Vector2(250f, 100f);
+    //[SerializeField] private TeamIndex _teamIndex;
+    
     private Dictionary<GameObject, UIGoalTextCounter> _teamViewsDict = new Dictionary<GameObject, UIGoalTextCounter>();
 
-    private void Awake()
+    private void Start()
     {
-        _goalCounter.OnCounterChanged += OnTeamGoal;
+        GoalCounter.Instance.OnCounterChanged += OnTeamGoal;
     }
 
     private void OnTeamGoal(GameObject team, int goalCount)
@@ -31,7 +31,8 @@ public class LeaderBoard : MonoBehaviour
             textCounter.SetText($"{team.name}: {goalCount}");
 
             //UIGoalTextCounter color
-            Color uiGoalTextCounterColor = team.GetComponent<Team>().TeamColor;
+            //Color uiGoalTextCounterColor = team.GetComponent<Team>().TeamColor;
+            Color uiGoalTextCounterColor = TeamHolder.Instance.GetTeamByIndex(_teamIndex).TeamColor;
             textCounter.GetComponent<Text>().color = uiGoalTextCounterColor; 
 
             //UIGoalTextCounter size
@@ -46,7 +47,7 @@ public class LeaderBoard : MonoBehaviour
 
     private void SortTeamsByGoals()
     {
-        var teamList = _goalCounter.GoalsDict.ToList();
+        var teamList = GoalCounter.Instance.GoalsDict.ToList();
         var sorted = teamList.OrderBy(pair => pair.Value).ToList();
         sorted.Reverse();
         int index = 1;

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GoalCounter : MonoBehaviour
 {
+    public static GoalCounter Instance { get; private set; }
+
     private Dictionary<GameObject, int> _goalsDict = new Dictionary<GameObject, int>();
     public Dictionary<GameObject, int> GoalsDict => _goalsDict;
 
@@ -14,6 +16,12 @@ public class GoalCounter : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+            Instance = this;
+        else
+        {
+            Destroy(this.gameObject);
+        }
         _gateTeam1.OnGoal += IncrementGoal;
         _gateTeam2.OnGoal += IncrementGoal;
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class Player : MonoBehaviour
 {
+    [SerializeField] private TeamIndex _teamIndex;
     protected IUserControl _userControl;
     [SerializeField] protected float _speed = 5;
     [SerializeField] protected Vector3 _currentVelocity;
@@ -26,8 +27,6 @@ public abstract class Player : MonoBehaviour
         }
     }
 
-    [SerializeField] protected GameObject _teamObject;
-    public GameObject TeamObject => _teamObject;
     [SerializeField] protected MeshRenderer _teamMarker;
     protected Color _teamColor;
     public Color TeamColor => _teamColor;
@@ -43,9 +42,8 @@ public abstract class Player : MonoBehaviour
         _userControl = GetComponent<IUserControl>();
         _rigidbody = GetComponent<Rigidbody>();
 
-        //set team color
-        //_teamObject = GetComponentInParent<Game>();
-        _teamColor = _teamObject.GetComponent<Team>().TeamColor;
+        //set team color               
+        _teamColor = TeamHolder.Instance.GetTeamByIndex(_teamIndex).TeamColor;
         _teamMarker.material.color = _teamColor;
     }
 
