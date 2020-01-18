@@ -648,7 +648,7 @@ PrefabInstance:
     - target: {fileID: 3604615413024517811, guid: 368ce1519e79725419f79b44a7cb1b22,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.47
+      value: -2.83
       objectReference: {fileID: 0}
     - target: {fileID: 3604615413024517811, guid: 368ce1519e79725419f79b44a7cb1b22,
         type: 3}
@@ -658,7 +658,7 @@ PrefabInstance:
     - target: {fileID: 3604615413024517811, guid: 368ce1519e79725419f79b44a7cb1b22,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.93
+      value: -4.38
       objectReference: {fileID: 0}
     - target: {fileID: 3604615413024517811, guid: 368ce1519e79725419f79b44a7cb1b22,
         type: 3}
@@ -948,8 +948,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7518afb15f8efdd4b8972fd8d428e0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _team: {fileID: 1400236446}
-  _enemyTeam: {fileID: 1866293503}
   _teamIndex: 1
 --- !u!65 &664766183
 BoxCollider:
@@ -1424,15 +1422,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 820336026}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 6.96, y: 1.6, z: 2.87}
+  m_LocalRotation: {x: -0, y: 0.8719084, z: -0, w: -0.48966902}
+  m_LocalPosition: {x: 2.81, y: 1.6, z: 4.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1234500091}
   - {fileID: 1837145423}
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 238.638, z: 0}
 --- !u!54 &820336033
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1874,8 +1872,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7518afb15f8efdd4b8972fd8d428e0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _team: {fileID: 1866293503}
-  _enemyTeam: {fileID: 1400236446}
   _teamIndex: 0
 --- !u!1 &1490045907
 GameObject:
@@ -2253,7 +2249,7 @@ PrefabInstance:
     - target: {fileID: 3604615413024517811, guid: 368ce1519e79725419f79b44a7cb1b22,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.71
       objectReference: {fileID: 0}
     - target: {fileID: 3604615413024517811, guid: 368ce1519e79725419f79b44a7cb1b22,
         type: 3}
@@ -2263,7 +2259,7 @@ PrefabInstance:
     - target: {fileID: 3604615413024517811, guid: 368ce1519e79725419f79b44a7cb1b22,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.24
+      value: -4.38
       objectReference: {fileID: 0}
     - target: {fileID: 3604615413024517811, guid: 368ce1519e79725419f79b44a7cb1b22,
         type: 3}
@@ -2862,9 +2858,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _soccerTeams:
   - _teamIndex: 0
-    _teamColor: {r: 0, g: 0.07107735, b: 1, a: 0}
+    _teamColor: {r: 0, g: 0, b: 1, a: 1}
   - _teamIndex: 1
-    _teamColor: {r: 1, g: 0.09661572, b: 0, a: 0}
+    _teamColor: {r: 1, g: 0.09661572, b: 0, a: 1}
 --- !u!1 &2056974757
 GameObject:
   m_ObjectHideFlags: 0
@@ -2881,7 +2877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2056974758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2997,7 +2993,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059874511}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.46, y: 1.2, z: -0.34}
+  m_LocalPosition: {x: 0, y: 1.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1002065470}
@@ -3138,7 +3134,7 @@ PrefabInstance:
     - target: {fileID: 3604615413024517811, guid: 368ce1519e79725419f79b44a7cb1b22,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.73
+      value: 4.76
       objectReference: {fileID: 0}
     - target: {fileID: 3604615413024517811, guid: 368ce1519e79725419f79b44a7cb1b22,
         type: 3}

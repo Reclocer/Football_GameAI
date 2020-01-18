@@ -5,13 +5,12 @@ using UnityEngine;
 public class Preloader : MonoBehaviour
 {
     [SerializeField] private SceneSwitcher.SceneType _sceneToGo = 
-        SceneSwitcher.SceneType.MAIN_MENU;
+                             SceneSwitcher.SceneType.MAIN_MENU;
 
     [SerializeField] private GameObject[] _preloaderPrefabs;
 
     private void Awake()
     {
-
         LoadAllPreloaders();
         SceneSwitcher.LoadScene(_sceneToGo);
     }

@@ -59,11 +59,7 @@ public abstract class Player : MonoBehaviour
         _rigidbody.velocity = movePosition * _speed * Time.fixedDeltaTime;
 
     }
-
-    /// <summary>
-    /// Set control system (Singleton)
-    /// </summary>
-    /// <param name="userControl"></param>
+        
     public void SetControl(IUserControl userControl)
     {
         if(_userControl != null)

@@ -5,35 +5,33 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class LeaderBoard : MonoBehaviour
-{
-    
+{    
     [SerializeField] private UIGoalTextCounter _textCounterUIprefab;
-    private Vector2 _sizeForBlock = new Vector2(250f, 100f);
-    //[SerializeField] private TeamIndex _teamIndex;
+    private Vector2 _sizeForBlock = new Vector2(250f, 100f); // UI block    
     
-    private Dictionary<GameObject, UIGoalTextCounter> _teamViewsDict = new Dictionary<GameObject, UIGoalTextCounter>();
+    private Dictionary<SoccerTeam, UIGoalTextCounter> _teamViewsDict = 
+        new Dictionary<SoccerTeam, UIGoalTextCounter>();
 
     private void Start()
-    {
+    {        
         GoalCounter.Instance.OnCounterChanged += OnTeamGoal;
     }
 
-    private void OnTeamGoal(GameObject team, int goalCount)
+    private void OnTeamGoal(SoccerTeam team, int goalCount)
     {       
         if (_teamViewsDict.ContainsKey(team))
         {
-            _teamViewsDict[team].SetText($"{team.name}: {goalCount}");
+            _teamViewsDict[team].SetText($"{team.TeamIndex}: {goalCount}");
         }
         else
         {
             UIGoalTextCounter textCounter = Instantiate(_textCounterUIprefab, transform);
-            _teamViewsDict.Add(team, textCounter);
-            textCounter.SetText($"{team.name}: {goalCount}");
+            _teamViewsDict.Add(team, textCounter);            
+            textCounter.SetText($"{team.TeamIndex}: {goalCount}");
 
-            //UIGoalTextCounter color
-            //Color uiGoalTextCounterColor = team.GetComponent<Team>().TeamColor;
-            Color uiGoalTextCounterColor = TeamHolder.Instance.GetTeamByIndex(_teamIndex).TeamColor;
-            textCounter.GetComponent<Text>().color = uiGoalTextCounterColor; 
+            //UIGoalTextCounter color            
+            Color uiGoalTextCounterColor = team.TeamColor;
+            textCounter.GetComponent<Text>().color = uiGoalTextCounterColor;            
 
             //UIGoalTextCounter size
             RectTransform rect = textCounter.GetComponent<RectTransform>();
@@ -42,7 +40,8 @@ public class LeaderBoard : MonoBehaviour
                 rect.sizeDelta = _sizeForBlock;
         }
 
-        SortTeamsByGoals();        
+        SortTeamsByGoals();
+        //GoalCounter.Instance.OnCounterChanged -= OnTeamGoal;
     }
 
     private void SortTeamsByGoals()
@@ -55,7 +54,7 @@ public class LeaderBoard : MonoBehaviour
 
         foreach(var pair in sorted)
         {
-            GameObject team = pair.Key;
+            SoccerTeam team = pair.Key;
             int teamPoints = pair.Value;
             UIGoalTextCounter textCounter = _teamViewsDict[team];
             textCounter.transform.SetSiblingIndex(index);

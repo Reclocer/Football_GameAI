@@ -7,15 +7,15 @@ public class GoalCounter : MonoBehaviour
 {
     public static GoalCounter Instance { get; private set; }
 
-    private Dictionary<GameObject, int> _goalsDict = new Dictionary<GameObject, int>();
-    public Dictionary<GameObject, int> GoalsDict => _goalsDict;
+    private Dictionary<SoccerTeam, int> _goalsDict = new Dictionary<SoccerTeam, int>();
+    public Dictionary<SoccerTeam, int> GoalsDict => _goalsDict;
 
     [SerializeField] private Gate _gateTeam1;
     [SerializeField] private Gate _gateTeam2;
-    public event Action<GameObject, int> OnCounterChanged = (team, goalCount) => { };
+    public event Action<SoccerTeam, int> OnCounterChanged = (team, goalCount) => { };
 
     private void Awake()
-    {
+    { 
         if (Instance == null)
             Instance = this;
         else
@@ -26,13 +26,15 @@ public class GoalCounter : MonoBehaviour
         _gateTeam2.OnGoal += IncrementGoal;
     }
 
-    private void IncrementGoal(GameObject team)
+    private void IncrementGoal(SoccerTeam team)
     {
         AddGoalToTeam(team);     
         OnCounterChanged(team, _goalsDict[team]);
+        //_gateTeam1.OnGoal -= IncrementGoal;
+        //_gateTeam2.OnGoal -= IncrementGoal;
     }
 
-    private void AddGoalToTeam(GameObject team)
+    private void AddGoalToTeam(SoccerTeam team)
     {
         if(_goalsDict.ContainsKey(team))
         {
