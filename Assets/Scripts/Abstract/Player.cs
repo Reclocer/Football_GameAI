@@ -57,7 +57,6 @@ public abstract class Player : MonoBehaviour
         Vector3 movePosition = new Vector3(_userControl.X, 0f, _userControl.Y);
         
         _rigidbody.velocity = movePosition * _speed * Time.fixedDeltaTime;
-
     }
         
     public void SetControl(IUserControl userControl)
